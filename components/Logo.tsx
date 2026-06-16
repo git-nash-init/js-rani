@@ -20,7 +20,7 @@ export default function Logo({
       style={{ width: size, height: size }}
     >
       <Image
-        src="/logo.png"
+        src="/js-rani-logo.png"
         alt="JS Rani Foods registered logo"
         width={size}
         height={size}

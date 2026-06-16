@@ -29,8 +29,8 @@ export default function Nav() {
     <header
       className={`sticky top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-cream/90 shadow-[0_8px_30px_-12px_rgba(12,42,31,0.35)] backdrop-blur-md"
-          : "bg-transparent"
+          ? "bg-cream/95 shadow-[0_8px_30px_-12px_rgba(12,42,31,0.35)] backdrop-blur-md"
+          : "bg-green-deep/80 backdrop-blur-sm"
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
@@ -61,7 +61,7 @@ export default function Nav() {
               <a
                 href={l.href}
                 className={`group relative text-sm font-medium tracking-wide transition-colors ${
-                  scrolled ? "text-ink hover:text-brand" : "text-cream/90 hover:text-white"
+                  scrolled ? "text-ink hover:text-brand" : "text-cream hover:text-gold-bright"
                 }`}
               >
                 {l.label}

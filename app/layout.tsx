@@ -45,11 +45,11 @@ export const metadata: Metadata = {
       "Premium Cow Ghee, A2 Cow Ghee & Pure Organic Ghee — traditional bilona method, FSSAI · HACCP · ISO 22000 certified. Same premium quality, smarter price.",
     url: SITE_URL,
     siteName: "JS Rani Foods®",
-    images: [{ url: "/logo.png", width: 1400, height: 1400, alt: "JS Rani Foods logo" }],
+    images: [{ url: "/js-rani-logo.png", width: 1400, height: 1400, alt: "JS Rani Foods logo" }],
     locale: "en_IN",
     type: "website",
   },
-  icons: { icon: "/logo.png", apple: "/logo.png" },
+  icons: { icon: "/js-rani-logo.png", apple: "/js-rani-logo.png" },
   robots: { index: true, follow: true },
 };
 

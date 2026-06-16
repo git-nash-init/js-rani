@@ -19,13 +19,13 @@ export default function Products() {
             <Reveal key={p.id} delay={i * 0.1}>
               <article className="lift group flex h-full flex-col overflow-hidden rounded-2xl border border-gold/25 bg-card shadow-[0_18px_44px_-30px_rgba(12,42,31,0.5)]">
                 {/* Image */}
-                <div className="bg-emerald-marble relative aspect-[4/5] overflow-hidden">
+                <div className="bg-green-deep relative aspect-video overflow-hidden">
                   <Image
                     src={p.image}
                     alt={`JS Rani Foods ${p.name}`}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                    className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-green-deep/35 to-transparent" />
                   <span className="absolute left-4 top-4 rounded-full bg-[linear-gradient(180deg,#f0d791,#b78a2c)] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-green-deep shadow-md">

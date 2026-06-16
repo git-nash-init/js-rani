@@ -113,32 +113,35 @@ export default function Hero() {
           </motion.ul>
         </div>
 
-        {/* Product medallion */}
+        {/* Product image — landscape, blended into hero bg */}
         <motion.div
-          initial={reduce ? false : { opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: EASE, delay: 0.25 }}
-          className="relative mx-auto w-full max-w-md lg:col-span-5"
+          initial={reduce ? false : { opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.0, ease: EASE, delay: 0.3 }}
+          className="relative mx-auto w-full max-w-xl lg:col-span-5 lg:max-w-none"
         >
-          <div className="animate-[float_7s_ease-in-out_infinite]">
-            <div className="gold-frame relative overflow-hidden rounded-[2rem] bg-green-deep shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]">
-              <Image
-                src="/products/cow-ghee.png"
-                alt="JS Rani Foods premium cow ghee tin"
-                width={840}
-                height={1250}
-                priority
-                className="h-auto w-full"
-              />
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-1/5 bg-gradient-to-b from-green-deep/40 to-transparent" />
-            </div>
+          <div className="relative overflow-hidden rounded-2xl shadow-[0_24px_60px_-20px_rgba(0,0,0,0.65)]">
+            <Image
+              src="/products/cow-ghee.png"
+              alt="JS Rani Foods premium cow ghee"
+              width={1500}
+              height={844}
+              priority
+              className="h-auto w-full"
+            />
+            {/* blend left edge into hero emerald background */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#15402f] via-[#15402f]/55 to-transparent" />
+            {/* subtle top fade */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-[#15402f]/50 to-transparent" />
+            {/* subtle bottom fade */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0c2a1f]/65 to-transparent" />
+          </div>
 
-            {/* floating gold seal */}
-            <div className="absolute -bottom-6 -left-5 grid h-28 w-28 place-items-center rounded-full bg-[radial-gradient(circle,#f0d791,#b78a2c)] text-center shadow-2xl ring-4 ring-cream/20 sm:-left-8">
-              <div className="leading-tight text-green-deep">
-                <span className="block font-[family-name:var(--font-display)] text-xl font-bold">100%</span>
-                <span className="block text-[10px] font-semibold uppercase tracking-wide">Natural Ghee</span>
-              </div>
+          {/* floating gold seal */}
+          <div className="absolute -bottom-5 right-5 grid h-24 w-24 place-items-center rounded-full bg-[radial-gradient(circle,#f0d791,#b78a2c)] text-center shadow-2xl ring-4 ring-cream/20 sm:h-28 sm:w-28">
+            <div className="leading-tight text-green-deep">
+              <span className="block font-[family-name:var(--font-display)] text-xl font-bold">100%</span>
+              <span className="block text-[10px] font-semibold uppercase tracking-wide">Natural Ghee</span>
             </div>
           </div>
         </motion.div>
