@@ -1,26 +1,249 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ===========================================================================
+   JS RANI FOODS — Brand design tokens
+   Emerald green + antique gold + cream, with the red oval logo as the jewel.
+   Derived directly from the Canva packaging label & dealer catalogue.
+   =========================================================================== */
+@theme {
+  /* Emerald greens (primary brand surface) */
+  --color-green: #15402f;        /* primary deep emerald */
+  --color-green-deep: #0c2a1f;   /* deepest, for vignettes/footers */
+  --color-green-soft: #1f5440;   /* cards / table rows on green */
+  --color-emerald: #1f6b4c;      /* lighter accent / gradient top */
+
+  /* Antique golds */
+  --color-gold: #c9a24b;         /* primary metallic gold */
+  --color-gold-bright: #ecd089;  /* highlight */
+  --color-gold-deep: #8a6a1f;    /* shadow / metallic low */
+
+  /* Creams / surfaces */
+  --color-cream: #f5edd9;        /* light page band */
+  --color-cream-2: #ede2c6;      /* alternate band */
+  --color-card: #fbf6e9;         /* card surface */
+
+  /* Logo red (accent only) */
+  --color-brand: #d62a34;
+  --color-brand-dark: #a81f27;
+
+  /* Ink */
+  --color-ink: #21302a;          /* primary text on light (deep green-grey) */
+  --color-ink-soft: #586a60;     /* secondary text */
+
+  /* Fonts (wired via next/font in layout.tsx) */
+  --font-display: var(--font-cinzel), "Times New Roman", serif;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  /* Motion */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Animations */
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-float: float 7s var(--ease-soft) infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-spin-slow: spinslow 26s linear infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes spinslow {
+  to { transform: rotate(360deg); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===========================================================================
+   Base
+   =========================================================================== */
+:root { color-scheme: light; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6.5rem; /* sticky-nav offset for anchor jumps */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-green-deep);
+}
+
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: 0.01em; }
+
+a { -webkit-tap-highlight-color: transparent; }
+
+/* ===========================================================================
+   Brand surfaces
+   =========================================================================== */
+
+/* Rich emerald "marble" gradient — the signature dark brand background */
+.bg-emerald-marble {
+  background:
+    radial-gradient(115% 90% at 18% 0%, rgba(58, 138, 102, 0.55) 0%, transparent 55%),
+    radial-gradient(120% 120% at 85% 110%, rgba(10, 38, 28, 0.9) 0%, transparent 60%),
+    radial-gradient(140% 120% at 50% 50%, #1f5a42 0%, #16402f 42%, #0b2419 100%);
+}
+
+/* Soft cream marble for light bands */
+.bg-cream-marble {
+  background:
+    radial-gradient(120% 100% at 12% 0%, rgba(201, 162, 75, 0.10) 0%, transparent 48%),
+    radial-gradient(120% 120% at 90% 100%, rgba(31, 90, 66, 0.07) 0%, transparent 52%),
+    var(--color-cream);
+}
+
+/* Faint dotted-gold sparkle layer (use on dark sections) */
+.sparkle {
+  background-image: radial-gradient(rgba(236, 208, 137, 0.55) 1px, transparent 1.4px);
+  background-size: 34px 34px;
+  opacity: 0.16;
+}
+
+/* ===========================================================================
+   Gold detailing
+   =========================================================================== */
+
+/* Metallic gold gradient text */
+.text-gold-metallic {
+  background: linear-gradient(180deg, #f3dca0 0%, #d8b561 38%, #b78a2c 72%, #8a6a1f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Double gold frame, echoing the ornate label borders */
+.gold-frame {
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--color-gold) 70%, transparent);
+  box-shadow:
+    inset 0 0 0 1px rgba(236, 208, 137, 0.18),
+    inset 0 0 0 6px transparent,
+    inset 0 0 0 7px color-mix(in srgb, var(--color-gold) 38%, transparent);
+}
+
+/* Centred ornament rule with diamonds, like the logo flourish */
+.brand-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  color: var(--color-gold);
+}
+.brand-rule::before,
+.brand-rule::after {
+  content: "";
+  height: 1px;
+  width: clamp(36px, 13vw, 120px);
+  background: linear-gradient(90deg, transparent, var(--color-gold));
+}
+.brand-rule::after { background: linear-gradient(90deg, var(--color-gold), transparent); }
+
+/* Animated shimmering underline for section headings */
+.gold-underline { position: relative; display: inline-block; }
+.gold-underline::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.55rem;
+  width: 72px;
+  height: 3px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-deep), var(--color-gold-bright), var(--color-gold-deep), transparent);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* ===========================================================================
+   Buttons
+   =========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  padding: 0.85rem 1.7rem;
+  transition: transform 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft), background-color 0.3s, color 0.3s;
+  will-change: transform;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.btn-gold {
+  background: linear-gradient(180deg, #f0d791 0%, #cda44e 52%, #a9801f 100%);
+  color: #1c2e24;
+  box-shadow: 0 10px 26px -10px rgba(169, 128, 31, 0.7);
+}
+.btn-gold:hover { box-shadow: 0 16px 34px -12px rgba(169, 128, 31, 0.85); }
+
+.btn-outline {
+  border: 1.5px solid color-mix(in srgb, var(--color-gold) 75%, transparent);
+  color: var(--color-gold-bright);
+  background: transparent;
+}
+.btn-outline:hover {
+  background: color-mix(in srgb, var(--color-gold) 16%, transparent);
+  color: #fff;
+}
+
+/* ===========================================================================
+   Utility helpers
+   =========================================================================== */
+.lift {
+  transition: transform 0.45s var(--ease-soft), box-shadow 0.45s var(--ease-soft);
+  will-change: transform;
+}
+
+/* Crops the wide catalogue product images down to the tin on the left */
+.product-crop { object-fit: cover; object-position: 12% center; }
+
+/* Form inputs */
+.field {
+  width: 100%;
+  border-radius: 0.65rem;
+  border: 1.5px solid color-mix(in srgb, var(--color-gold-deep) 32%, transparent);
+  background: #fffefb;
+  padding: 0.72rem 0.95rem;
+  color: var(--color-ink);
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field::placeholder { color: color-mix(in srgb, var(--color-ink-soft) 75%, transparent); }
+.field:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-gold) 26%, transparent);
+}
+.field:user-invalid {
+  border-color: color-mix(in srgb, var(--color-brand) 60%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
