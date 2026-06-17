@@ -38,9 +38,9 @@ export default function WhyUs() {
                     </span>
                     <div className="relative h-9 w-full sm:flex-1 overflow-hidden rounded-full bg-green-deep/60">
                       <motion.div
-                        initial={reduce ? false : { width: 0 }}
+                        initial={{ width: reduce ? `${pct}%` : "0%" }}
                         whileInView={{ width: `${pct}%` }}
-                        viewport={{ once: true, margin: "-60px" }}
+                        viewport={{ once: true }}
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 }}
                         className={`flex h-full items-center justify-end rounded-full pr-3 text-xs font-bold ${
                           row.us

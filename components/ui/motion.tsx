@@ -26,10 +26,10 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={reduce ? false : { opacity: 0, y }}
+      initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, ease: EASE, delay }}
+      viewport={{ once: true }}
+      transition={{ duration: reduce ? 0 : 0.7, ease: EASE, delay }}
     >
       {children}
     </motion.div>
@@ -51,7 +51,7 @@ export function CountUp({
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true });
   const reduce = useReducedMotion();
   const [val, setVal] = useState(0);
 
