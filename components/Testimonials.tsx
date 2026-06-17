@@ -41,7 +41,7 @@ export default function Testimonials() {
         />
 
         <div className="relative">
-          <div className="relative min-h-[20rem] sm:min-h-[17rem]">
+          <div className="relative min-h-[16rem]">
             <AnimatePresence mode="wait" custom={dir}>
               <motion.figure
                 key={index}
@@ -50,7 +50,7 @@ export default function Testimonials() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={reduce ? { opacity: 0 } : { opacity: 0, x: dir >= 0 ? -60 : 60 }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="gold-frame absolute inset-0 flex flex-col rounded-2xl bg-card p-8 shadow-[0_18px_44px_-30px_rgba(12,42,31,0.5)] sm:p-10"
+                className="gold-frame relative flex w-full flex-col rounded-2xl bg-card p-8 shadow-[0_18px_44px_-30px_rgba(12,42,31,0.5)] sm:p-10"
               >
                 <Quote className="h-10 w-10 text-gold/60" />
                 <blockquote className="mt-4 flex-1 font-[family-name:var(--font-serif)] text-xl leading-relaxed text-ink sm:text-2xl">

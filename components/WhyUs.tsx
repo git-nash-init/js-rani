@@ -27,16 +27,16 @@ export default function WhyUs() {
               {PRICE_COMPARISON.map((row, i) => {
                 const pct = Math.round((row.price / MAX) * 100);
                 return (
-                  <li key={row.brand} className="flex items-center gap-3">
+                  <li key={row.brand} className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
                     <span
-                      className={`w-32 shrink-0 text-sm sm:w-40 ${
+                      className={`w-full text-sm sm:w-40 shrink-0 ${
                         row.us ? "font-bold text-gold-bright" : "text-cream/75"
                       }`}
                     >
                       {row.brand}
                       {row.us && <span className="align-super text-[0.6em]">®</span>}
                     </span>
-                    <div className="relative h-9 flex-1 overflow-hidden rounded-full bg-green-deep/60">
+                    <div className="relative h-9 w-full sm:flex-1 overflow-hidden rounded-full bg-green-deep/60">
                       <motion.div
                         initial={reduce ? false : { width: 0 }}
                         whileInView={{ width: `${pct}%` }}

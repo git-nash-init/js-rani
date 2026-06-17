@@ -28,7 +28,9 @@ export default function Nav() {
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-500 ${
-        scrolled
+        open
+          ? "bg-green-deep"
+          : scrolled
           ? "bg-cream/95 shadow-[0_8px_30px_-12px_rgba(12,42,31,0.35)] backdrop-blur-md"
           : "bg-green-deep/80 backdrop-blur-sm"
       }`}
@@ -97,7 +99,7 @@ export default function Nav() {
             className="fixed inset-0 z-[60] bg-emerald-marble lg:hidden"
           >
             <div className="sparkle pointer-events-none absolute inset-0" />
-            <div className="relative flex items-center justify-between px-5 py-4">
+            <div className="relative flex items-center justify-between px-4 py-3 sm:px-6">
               <div className="flex items-center gap-3">
                 <Logo size={48} />
                 <span className="font-[family-name:var(--font-display)] text-base font-bold text-cream">
