@@ -8,7 +8,7 @@ export type ProductVariant = {
 
 export const PRODUCT_VARIANTS: Record<string, ProductVariant[]> = {
   "cow-ghee": [
-    { label: "5 kg Tin Pack", size: "5kg", container: "Tin Pack", mrp: 4050, price: 2700 },
+    { label: "5 kg Tin Pack", size: "5kg", container: "Tin Pack", mrp: 4050, price: 1 },
     { label: "15 kg Tin Pack", size: "15kg", container: "Tin Pack", mrp: 12500, price: 7000 },
   ],
   "a2-cow-ghee": [
