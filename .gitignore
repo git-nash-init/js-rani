@@ -44,3 +44,13 @@ next-env.d.ts
 .claude/
 .claude
 *.pdf
+.gemini/
+.gemini
+AGENTS.md
+CLAUDE.md
+walkthrough.md
+implementation_plan.md
+task.md
+
+# explicitly allow .env.example so it gets pushed
+!.env.example

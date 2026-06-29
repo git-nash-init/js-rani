@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { PRODUCTS } from "@/lib/content";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/motion";
@@ -56,13 +57,13 @@ export default function Products() {
                       <p className="text-[11px] uppercase tracking-wide text-ink-soft">Available in</p>
                       <p className="font-semibold text-green">{p.sizes}</p>
                     </div>
-                    <a
-                      href="#contact"
-                      aria-label={`Enquire about ${p.name}`}
+                    <Link
+                      href={`/order/${p.id}`}
+                      aria-label={`Order ${p.name}`}
                       className="grid h-11 w-11 place-items-center rounded-full bg-green text-cream transition-all duration-300 group-hover:bg-brand group-hover:shadow-lg"
                     >
                       <ArrowRight className="h-5 w-5" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </article>
