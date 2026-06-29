@@ -30,6 +30,13 @@ export async function POST(request: NextRequest) {
       error_Message: formData.get("error_Message") as string ?? "",
     };
 
+    console.info("[/api/payu/success] Received PayU callback", {
+      txnid: response.txnid,
+      status: response.status,
+      amount: response.amount,
+      email: response.email,
+    });
+
     const salt = process.env.PAYU_SALT ?? "";
 
     // --- Verify hash ---
@@ -45,13 +52,18 @@ export async function POST(request: NextRequest) {
 
     // --- Check payment status ---
     if (response.status !== "success") {
+      console.warn("[/api/payu/success] Payment not successful", {
+        txnid: response.txnid,
+        status: response.status,
+        error: response.error_Message,
+      });
       return NextResponse.redirect(
         `${baseUrl}/order/failure?txnid=${encodeURIComponent(response.txnid)}&error=${encodeURIComponent(response.error_Message ?? "payment_failed")}`,
         303
       );
     }
 
-    // --- Reconstruct order details for emails ---
+    // --- Reconstruct order details ---
     const productId = response.udf5 ?? "";
     const size = response.udf1 ?? "";
     const qty = Number(response.udf2 ?? 1);
@@ -85,10 +97,47 @@ export async function POST(request: NextRequest) {
       state: "",
     };
 
-    // --- Send emails (fire and forget — don't block redirect on mail failure) ---
-    Promise.all([sendCustomerEmail(order), sendAdminEmail(order)]).catch(
-      (err) => console.error("[/api/payu/success] Email error:", err)
-    );
+    // ── Send emails ────────────────────────────────────────────────────────────
+    // IMPORTANT: We MUST await before returning the redirect response.
+    // On Vercel, serverless functions are terminated the instant a Response is
+    // sent. An un-awaited (fire-and-forget) Promise gets killed mid-flight
+    // before the SMTP handshake completes — which is why no emails arrived.
+    // ──────────────────────────────────────────────────────────────────────────
+    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      console.error(
+        "[/api/payu/success] ❌ SMTP_USER or SMTP_PASS not set in Vercel environment variables — emails cannot be sent."
+      );
+    } else {
+      try {
+        console.info("[/api/payu/success] Sending confirmation emails...", {
+          to_customer: order.customerEmail,
+          to_admin: process.env.ADMIN_EMAIL ?? "marketing@jagadambastore.com",
+          smtp_host: process.env.SMTP_HOST,
+          smtp_user: process.env.SMTP_USER,
+        });
+
+        // Await both emails fully before redirecting
+        await Promise.all([
+          sendCustomerEmail(order),
+          sendAdminEmail(order),
+        ]);
+
+        console.info(
+          `[/api/payu/success] ✅ Emails sent successfully for txnid: ${response.txnid}`
+        );
+      } catch (emailErr) {
+        // Full error printed to Vercel logs — check Vercel dashboard → Functions tab
+        console.error("[/api/payu/success] ❌ EMAIL SEND FAILED:", {
+          message: emailErr instanceof Error ? emailErr.message : String(emailErr),
+          stack: emailErr instanceof Error ? emailErr.stack : undefined,
+          smtp_host: process.env.SMTP_HOST,
+          smtp_user: process.env.SMTP_USER,
+          txnid: response.txnid,
+          customer_email: order.customerEmail,
+        });
+        // Payment was successful — don't redirect to failure just because email failed
+      }
+    }
 
     // --- Redirect to success page ---
     const params = new URLSearchParams({
@@ -106,7 +155,10 @@ export async function POST(request: NextRequest) {
       303
     );
   } catch (err) {
-    console.error("[/api/payu/success]", err);
-    return NextResponse.redirect(`${baseUrl}/order/failure?error=server_error`, 303);
+    console.error("[/api/payu/success] Unhandled error:", err);
+    return NextResponse.redirect(
+      `${baseUrl}/order/failure?error=server_error`,
+      303
+    );
   }
 }
