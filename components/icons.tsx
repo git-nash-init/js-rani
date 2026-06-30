@@ -119,6 +119,15 @@ export const Truck = (props: IconProps) => (
   </svg>
 );
 
+export const TeaCup = (props: IconProps) => (
+  <svg {...base(props)}>
+    <path d="M5 8h11v5a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5V8z" />
+    <path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16" />
+    <path d="M7.5 2.5c-.5.7-.5 1.3 0 2M10.5 2.5c-.5.7-.5 1.3 0 2M13.5 2.5c-.5.7-.5 1.3 0 2" />
+    <path d="M4 21h13" />
+  </svg>
+);
+
 export const ArrowUp = (props: IconProps) => (
   <svg {...base(props)}>
     <path d="M12 19V5" />

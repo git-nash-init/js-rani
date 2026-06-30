@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import TrustStrip from "@/components/TrustStrip";
 import About from "@/components/About";
 import Products from "@/components/Products";
+import TeaComingSoon from "@/components/TeaComingSoon";
 import WhyUs from "@/components/WhyUs";
 import Process from "@/components/Process";
 import Certifications from "@/components/Certifications";
@@ -146,6 +147,7 @@ export default function Home() {
         <TrustStrip />
         <About />
         <Products />
+        <TeaComingSoon />
         <WhyUs />
         <Process />
         <Certifications />
