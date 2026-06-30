@@ -128,7 +128,7 @@ export type Tea = {
   id: string;
   name: string;
   note: string;       // short, evocative tasting note
-  dot: string;        // accent colour for the leaf/liquor swatch
+  image: string;      // path to the tea image
 };
 
 export const TEAS: Tea[] = [
@@ -136,25 +136,25 @@ export const TEAS: Tea[] = [
     id: "green-tea",
     name: "Green Tea",
     note: "Delicate, antioxidant-rich leaves — light, grassy and refreshing.",
-    dot: "#6f9b5a",
+    image: "/teas/green-tea.png",
   },
   {
     id: "black-tea",
     name: "Black Tea",
     note: "Full-bodied Assam black — bright, malty and beautifully brisk.",
-    dot: "#5a2f1d",
+    image: "/teas/black-tea.png",
   },
   {
     id: "premium-ctc-tea",
     name: "Premium CTC Tea",
     note: "Strong, coppery liquor for that perfect kadak cup of chai.",
-    dot: "#8a4a23",
+    image: "/teas/premium-ctc-tea.png",
   },
   {
     id: "blue-tea",
     name: "Blue Tea",
     note: "Butterfly-pea blossoms — caffeine-free, floral and a striking azure.",
-    dot: "#3a5fa8",
+    image: "/teas/blue-tea.png",
   },
 ];
 

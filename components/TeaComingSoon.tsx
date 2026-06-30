@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { TEAS } from "@/lib/content";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/motion";
@@ -32,15 +33,15 @@ export default function TeaComingSoon() {
                   Coming Soon
                 </span>
 
-                {/* leaf / liquor swatch */}
-                <span
-                  className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-full ring-1 ring-gold/30 transition-transform duration-500 group-hover:scale-105"
-                  style={{
-                    background: `radial-gradient(circle at 30% 30%, ${t.dot}, ${t.dot}99 60%, transparent)`,
-                  }}
-                >
-                  <TeaCup className="h-7 w-7 text-cream" />
-                </span>
+                {/* leaf / liquor image */}
+                <div className="mx-auto mb-5 relative h-32 w-32 overflow-hidden rounded-full ring-2 ring-gold/30 transition-transform duration-500 group-hover:scale-105">
+                  <Image
+                    src={t.image}
+                    alt={t.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
 
                 <h3 className="font-[family-name:var(--font-display)] text-xl font-bold text-cream">
                   {t.name}
