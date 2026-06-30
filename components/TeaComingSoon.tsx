@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { TEAS } from "@/lib/content";
+import { TEA } from "@/lib/content";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/motion";
 import { TeaCup } from "./icons";
@@ -7,7 +7,7 @@ import { TeaCup } from "./icons";
 export default function TeaComingSoon() {
   return (
     <section
-      id="teas"
+      id="tea"
       className="bg-emerald-marble relative overflow-hidden py-20 sm:py-28"
     >
       {/* gold sparkle wash */}
@@ -21,11 +21,11 @@ export default function TeaComingSoon() {
           dark
           eyebrow="From the Heart of Assam · Coming Soon"
           title="A Premium Tea Range, Brewing"
-          subtitle="Rooted in Dibrugarh — the soul of Assam's tea country — we're crafting a curated selection of fine teas to sit beside our pure ghee. A first taste of what's on the horizon."
+          subtitle="Rooted in Dibrugarh — the soul of Assam's tea country — we're crafting a curated selection of fine tea to sit beside our pure ghee. A first taste of what's on the horizon."
         />
 
         <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
-          {TEAS.map((t, i) => (
+          {TEA.map((t, i) => (
             <Reveal key={t.id} delay={i * 0.1}>
               <article className="lift group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gold/25 bg-green-soft/30 p-7 text-center backdrop-blur-sm">
                 {/* Coming Soon ribbon */}
@@ -61,7 +61,7 @@ export default function TeaComingSoon() {
 
         <Reveal delay={0.2} className="mt-12 text-center">
           <p className="font-[family-name:var(--font-serif)] text-lg italic text-cream/80">
-            Want first access when our teas launch?
+            Want first access when our tea launches?
           </p>
           <a href="#contact" className="btn btn-outline mt-4 text-base">
             Notify Me at Launch

@@ -113,7 +113,6 @@ export default function Footer() {
         <div className="mt-12 border-t border-gold/15 pt-8 text-xs leading-relaxed text-cream/50">
           <p>
             Marketed by JS Rani Foods, {COMPANY.legalName} — FSSAI Lic. No. {COMPANY.fssaiMarketed}.
-            Manufactured by {COMPANY.manufacturedBy} — FSSAI Lic. No. {COMPANY.fssaiManufactured}.
             Trademark Reg. No. {COMPANY.trademarkNo} (Class 30).
           </p>
           <div className="mt-4 flex flex-col items-center justify-between gap-2 sm:flex-row">

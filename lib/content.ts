@@ -20,14 +20,13 @@ export const COMPANY = {
   // Compliance
   fssaiMarketed: "10326016000018",
   fssaiManufactured: "10723002000163",
-  manufacturedBy: "Shakti Enterprise, Surat, Gujarat – 395006",
   trademarkNo: "5854612",
 } as const;
 
 export const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "Our Ghee", href: "#products" },
-  { label: "Teas", href: "#teas" },
+  { label: "Tea", href: "#tea" },
   { label: "Why Us", href: "#why-us" },
   { label: "How It's Made", href: "#process" },
   { label: "Certifications", href: "#certifications" },
@@ -120,7 +119,7 @@ export const PRODUCTS: Product[] = [
 ];
 
 /* ===========================================================================
-   Upcoming range — Premium Teas (Coming Soon).
+   Upcoming range — Premium Tea (Coming Soon).
    Dibrugarh sits in the heart of Assam's tea belt, so a fine tea line is a
    natural extension of the brand. These are teasers, not yet for sale.
    =========================================================================== */
@@ -131,30 +130,30 @@ export type Tea = {
   image: string;      // path to the tea image
 };
 
-export const TEAS: Tea[] = [
+export const TEA: Tea[] = [
   {
     id: "green-tea",
     name: "Green Tea",
     note: "Delicate, antioxidant-rich leaves — light, grassy and refreshing.",
-    image: "/teas/green-tea.png",
+    image: "/tea/green-tea.png",
   },
   {
     id: "black-tea",
     name: "Black Tea",
     note: "Full-bodied Assam black — bright, malty and beautifully brisk.",
-    image: "/teas/black-tea.png",
+    image: "/tea/black-tea.png",
   },
   {
     id: "premium-ctc-tea",
     name: "Premium CTC Tea",
     note: "Strong, coppery liquor for that perfect kadak cup of chai.",
-    image: "/teas/premium-ctc-tea.png",
+    image: "/tea/premium-ctc-tea.png",
   },
   {
     id: "blue-tea",
     name: "Blue Tea",
     note: "Butterfly-pea blossoms — caffeine-free, floral and a striking azure.",
-    image: "/teas/blue-tea.png",
+    image: "/tea/blue-tea.png",
   },
 ];
 
